@@ -54,7 +54,7 @@
 <?php get_header(); ?>
     <div class="crumbs-block"><?php show_bread_crumbs() ?></div>
     <div class="post-page solutions-individual">
-	  <div class="left">
+	  <div class="left" data-test="some test">
 <?php include(TEMPLATEPATH . '/sidebar-solutions.php'); ?>	
 	  </div>
 	  
