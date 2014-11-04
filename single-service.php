@@ -1,1 +1,0 @@
-<?php include "single-solution.php";
