@@ -169,7 +169,7 @@
 		    			$('.locator-debug').append('distance: '+ dlr.distance + ' <br/ >');
 		    			if (dlr.distance > <?php echo intval(get_option('dealers_search_distance')) * 1000; ?>) break;
 		    			if (dlr.country == $('#dealer_search_form select').val()) {
-		    				console.log(dlr.html);
+		    				
 		    				$(dlr.html).find('.distance').html(Math.round(dlr.distance / 1000)  + 'km').end()
 		    					.appendTo($('#dealers_list'));
 		    				dlr_shown++;
