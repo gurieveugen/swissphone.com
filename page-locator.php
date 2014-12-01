@@ -46,6 +46,7 @@
                         $_html		=	str_ireplace( "\r", '\\' . "\r" ,'<div>
     						<h3 style="color: #CC0033;">'.$name.'</h3>
     						<p>
+    							<strong>'.__('Distance','SwissPhone').'</strong> : <span class="distance"></span><br />
                                 <strong>'.__('Address','SwissPhone').'</strong> : '.$address.'<br />    							
     							<strong>'.__('City','SwissPhone').'</strong> : '.$city.' <br />
                                 <strong>'.__('State','SwissPhone').'</strong> : '.$state.' <br />    							
@@ -154,9 +155,11 @@
 				for ( pos in search_data ) {
 					dlr = search_data[pos];
 				    dlr.distance = google.maps.geometry.spherical.computeDistanceBetween( loc, dlr.location );
+
 	        	}
 	        	search_data.sort(compare_distance);
 	        	var dlr_shown = 0;
+
 	        	(function($){
 		    		$('#dealers_list').html('');
 		    		for( i in search_data ) {
@@ -164,8 +167,9 @@
 		    			$('.locator-debug').append('cur: '+ i + ' <br/ >');
 		    			if (dlr_shown >= <?php echo intval(get_option('dealers_search_count')); ?>) break;
 		    			$('.locator-debug').append('distance: '+ dlr.distance + ' <br/ >');
-		    			if (dlr.distance > <?php echo intval(get_option('dealers_search_distance')) * 1000; ?>) break; 
+		    			if (dlr.distance > <?php echo intval(get_option('dealers_search_distance')) * 1000; ?>) break;
 		    			if (dlr.country == $('#dealer_search_form select').val()) {
+		    				console.log(dlr.html);
 		    				$(dlr.html).find('.distance').html(Math.round(dlr.distance / 1000)  + 'km').end()
 		    					.appendTo($('#dealers_list'));
 		    				dlr_shown++;
