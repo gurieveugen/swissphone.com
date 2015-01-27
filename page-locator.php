@@ -152,6 +152,7 @@
 			
 			
 			function sort_and_show_results( loc ) {
+				console.log(loc, pos);
 				for ( pos in search_data ) {
 					dlr = search_data[pos];
 				    dlr.distance = google.maps.geometry.spherical.computeDistanceBetween( loc, dlr.location );
@@ -187,12 +188,18 @@
 		        }
 		        jQuery('#dealers_list').html('<?php _e('Searching...', 'SwissPhone'); ?>');
 				var country_addr = $('#dealer_search_form select option:selected').text() + ' ' + jQuery('#search_zip').val();
-		        geocoder.geocode( { 'address': country_addr } , function( results, status ) {
-			      if (status == google.maps.GeocoderStatus.OK) {
-				      sort_and_show_results( results[0].geometry.location );
-			      } else {
-					  show_locator_not_found();
-			      }
+				
+		        geocoder.geocode( 
+		        	{ 'address': country_addr } , 
+		        	function( results, status ) {
+			      		if (status == google.maps.GeocoderStatus.OK) 
+			      		{
+				      		sort_and_show_results( results[0].geometry.location );
+			      		} 
+			      		else 
+			      		{
+					  		show_locator_not_found();
+			      		}
 			    });
 			    return false;
 			}
